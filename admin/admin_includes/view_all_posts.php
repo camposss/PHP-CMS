@@ -11,6 +11,8 @@
                 <th>Tags</th>
                 <th>Comments</th>
                 <th>Date</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
         </thead>
         <tbody>
@@ -35,7 +37,15 @@
         echo "<td>{$post_id}</td>";
         echo "<td>{$post_author}</td>";
         echo "<td>{$post_title}</td>";
-        echo "<td>{$post_category}</td>";
+        $query = "SELECT * FROM categories WHERE cat_id = $post_category";
+        $select_categories_id= mysqli_query($conn, $query);
+    
+        while($row= mysqli_fetch_assoc($select_categories_id)){
+            $cat_id=$row['cat_id'];
+            $cat_title=$row['cat_title'];
+
+        echo "<td>{$cat_title}</td>";
+        }
         echo "<td>{$post_status}</td>";
         echo "<td><img width= '200' src = '../images/$post_image' alt='image'></td>";
         echo "<td>{$post_tags}</td>";
@@ -53,7 +63,7 @@ if(isset($_GET['delete'])){
 $the_post_id= $_GET['delete'];
 $query= "DELETE FROM posts WHERE post_id = {$the_post_id}";
 $delete_query= mysqli_query($conn, $query);
-
+header("Location: posts.php");
 
 }
 
