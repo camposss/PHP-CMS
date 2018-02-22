@@ -11,7 +11,8 @@
                 <div class="row"></div>
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                        Welcome Christian
+                        Welcome
+                        <?php echo $_SESSION['firstname'] ?>
                             <small>You are the admin</small>
                         </h1>
             
