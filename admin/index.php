@@ -135,6 +135,10 @@
   $draft_post_counts= mysqli_num_rows($select_all_draft_posts);
 //   echo "<div class='huge'>{$draft_post_counts}</div>";
 
+    $query= "SELECT * FROM posts WHERE post_status = 'publish'";
+    $select_all_publish_posts= mysqli_query($conn, $query);
+    $publish_post_counts= mysqli_num_rows($select_all_publish_posts);
+
   $query= "SELECT * FROM comments WHERE comment_status = 'reject'";
   $select_all_rejected_comments= mysqli_query($conn, $query);
   $rejeceted_comment_counts= mysqli_num_rows($select_all_rejected_comments);
@@ -153,8 +157,8 @@
                         var data = google.visualization.arrayToDataTable([
                         ['Data', 'Count'],
                         <?php 
-                            $element_text= ['Active Posts','Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
-                            $element_count= [$post_counts, $draft_post_counts, $comment_counts, $rejeceted_comment_counts, $user_counts, $subscriber_count, $categories_counts];
+                            $element_text= ['All Posts', 'Published Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
+                            $element_count= [$post_counts, $publish_post_counts, $draft_post_counts, $comment_counts, $rejeceted_comment_counts, $user_counts, $subscriber_count, $categories_counts];
 
                             for($i= 0; $i<count($element_count); $i++){
                                 if(!$element_count){

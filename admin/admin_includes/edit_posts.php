@@ -63,6 +63,9 @@ if(isset($_POST['update_post'])){
     if(!$update_post){
         die('query failed' .mysqli_error($conn));
     }
+    echo "<p class='bg-success'> Post Updated. <a href='../post.php?p_id={$the_post_id}'>View Post </a>or
+        <a href='posts.php'>Edit More Posts</a>
+    </p>";
 }
 
 ?>
@@ -100,7 +103,17 @@ $cat_id= $post_id;
 </div>
 <div class="form-group">
     <label for="">Post Status</label>
-    <input value = <?php echo $post_status ?>  type="text" class="form-control" name="post_status">
+    <select name="post_status" id="">
+        <option value='<?php echo $post_status ?>'><?php echo $post_status; ?></option>
+        <?php 
+            if($post_status==='Publish'){
+                echo "<option value='Draft'>Draft</option>";
+            }else{
+                echo "<option value='Publish'>Publish</option>";
+            }
+
+        ?>
+    </select>
 </div>
 <div class="form-group">
     <label for="">Post Image</label>

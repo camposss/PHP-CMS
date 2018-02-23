@@ -25,15 +25,30 @@
 
                 }
                 ?>
-                    <li>
-                        <a href="/admin">Admin</a>
-                    </li>
+                <?php
+                    if(isset($_SESSION['username'])){
+                        if($_SESSION['role']!=='subscriber'){
+                            echo "<li><a href='../admin'>Admin</a></li>";
+                        }
+                    }
+                ?>
+<?php 
+
+    if(isset($_SESSION['username'])){
+        if(isset($_GET['p_id'])&& $_SESSION['role']!=='subscriber'){
+            $the_post_id= $_GET['p_id'];
+            echo "<li><a href='../admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+        }
+    }
+
+    // <a href='/admin/posts.php?source=edit_post&p_id={$the_post_id}'>
+?>
                     <!-- <li>
                         <a href="#">Services</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
-                    </li> --> -->
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->

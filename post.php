@@ -1,6 +1,7 @@
 <?php
 include ('includes/db.php');
 include ('includes/header.php');
+session_start();
 ?>
 
     <!-- Navigation -->
@@ -49,10 +50,7 @@ include ('includes/header.php');
                 <img class="img-responsive" src="images/<?php echo $post_image; ?>" alt="">
                 <hr>
                 <p><?php echo $post_content ?> </p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
                 <hr>
-
                 <?php }
 
                 ?>
@@ -60,31 +58,34 @@ include ('includes/header.php');
 
 
                 <!-- Blog Comments -->
-                <?php 
-                if(isset($_POST['create_comment'])){
+<?php 
+if(isset($_POST['create_comment'])){
+    $the_post_id= $_GET['p_id'];
+    $comment_author=$_POST['comment_author'];
+    $comment_email=$_POST['comment_email'];
+    $comment_content=$_POST['comment_content'];
+    if(!empty($comment_author) && !empty($comment_email)&& !empty($comment_author) ){
+        
+    $query= "INSERT INTO comments (comment_post_id, comment_author, comment_email, 
+    comment_content, comment_status, comment_date)"; 
+    
+    $query .= "VALUES ($the_post_id, '${comment_author}', '${comment_email}', '${comment_content}', 'reject', now())"; 
+    
+    $add_comment= mysqli_query($conn, $query);
+    if(!$add_comment){
+        die("Query failed ". mysqli_error($conn));
+    }
+    
+    $query= "UPDATE posts SET post_comment_count = post_comment_count +1 WHERE post_id= $the_post_id";
+    $update_comment_count = mysqli_query($conn, $query);
+    
+    }else{
+        echo "<script> alert('Please Fill All Fields')</script>";
+    }
+    }
 
-                    $the_post_id= $_GET['p_id'];
-
-                    $comment_author=$_POST['comment_author'];
-                    $comment_email=$_POST['comment_email'];
-                    $comment_content=$_POST['comment_content'];
-                    
-$query= "INSERT INTO comments (comment_post_id, comment_author, comment_email, 
-comment_content, comment_status, comment_date)"; 
-
-$query .= "VALUES ($the_post_id, '${comment_author}', '${comment_email}', '${comment_content}', 'reject', now())"; 
-
-$add_comment= mysqli_query($conn, $query);
-if(!$add_comment){
-    die("Query failed ". mysqli_error($conn));
-}
-
-$query= "UPDATE posts SET post_comment_count = post_comment_count +1 WHERE post_id= $the_post_id";
-$update_comment_count = mysqli_query($conn, $query);
-
-                }
                 
-                ?>
+?>
                 <!-- Comments Form -->
                 <div class="well">
                     <h4>Leave a Comment:</h4>

@@ -1,6 +1,10 @@
 <?php include "db.php";?>
 
-<?php session_start();?>
+<?php session_start();
+if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+    echo 'Set and not empty, and no undefined index error!';
+ }
+?>
 
 <?php
 if(isset($_POST['login'])){
@@ -34,7 +38,11 @@ if($username=== $db_username && $password===$db_password){
     $_SESSION['lastname']= $db_lastname;
     $_SESSION['role']= $db_role;
 
-    header("Location: ../admin");
+    if($_SESSION['role']!=='subscriber'){
+        header("Location: ../admin");
+    }else{
+        header("Location: ../index.php");
+    }
 }else{
     header("Location: ../index.php");
 }
