@@ -4,8 +4,6 @@
 <?php 
 
 if(isset($_POST['submit'])){
-
-
     echo "we hit register or something";
     $username= $_POST['username'];
     $password= $_POST['password'];
@@ -47,16 +45,10 @@ if(isset($_POST['submit'])){
 }
 
 ?>
-
-
     <!-- Navigation -->
-    
     <?php  include "includes/nav.php"; ?>
-    
- 
     <!-- Page Content -->
     <div class="container">
-    
 <section id="login">
     <div class="container">
         <div class="row">
@@ -78,7 +70,7 @@ if(isset($_POST['submit'])){
                             <input type="password" name="password" id="key" class="form-control" placeholder="Password">
                         </div>
                 
-                        <input type="submit" name="submit" id="btn-login" class="btn btn-custom btn-lg btn-block" value="Register">
+                        <input type="submit" name="submit" id="btn-login" class="btn btn-success btn-lg btn-block" value="Register">
                     </form>
                  
                 </div>
@@ -86,10 +78,6 @@ if(isset($_POST['submit'])){
         </div> <!-- /.row -->
     </div> <!-- /.container -->
 </section>
-
-
         <hr>
-
-
 
 <?php include "includes/footer.php";?>
