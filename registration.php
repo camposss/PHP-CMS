@@ -11,20 +11,22 @@ if(isset($_POST['submit'])){
 
     if(!empty($username) &&  !empty($password) && !empty($email)){
         echo $username= mysqli_real_escape_string($conn, $username); 
-        $password= mysqli_real_escape_string($conn, $username); 
+        $password= mysqli_real_escape_string($conn, $password); 
         $email= mysqli_real_escape_string($conn, $username); 
         
-        $query= "SELECT randSalt FROM users";
-        $select_randsalt_query= mysqli_query($conn, $query);
-        if(!$select_randsalt_query){
-            die("query failed". mysqli_error($conn));
-        }
-        $row= mysqli_fetch_array($select_randsalt_query);
-        $salt= $row['randSalt'];
+        // $query= "SELECT randSalt FROM users";
+        // $select_randsalt_query= mysqli_query($conn, $query);
+        // if(!$select_randsalt_query){
+        //     die("query failed". mysqli_error($conn));
+        // }
+        // $row= mysqli_fetch_array($select_randsalt_query);
+        // $salt= $row['randSalt'];
 
-        $password= crypt($password, $salt);
+        // $password= crypt($password, $salt);
+        // $hash = password_hash($password, PASSWORD_BCRYPT);
+
+        $password =sha1($password);
         
-
         $query= "INSERT INTO users (username, user_email, user_password, user_role)";
         $query .= "VALUES ('{$username}', '{$email}', '{$password}', 'subscriber')";
         $register_user_query= mysqli_query($conn, $query);
@@ -67,7 +69,7 @@ if(isset($_POST['submit'])){
                         </div>
                          <div class="form-group">
                             <label for="password" class="sr-only">Password</label>
-                            <input type="password" name="password" id="key" class="form-control" placeholder="Password">
+                            <input type="text" name="password" class="form-control" placeholder="Password">
                         </div>
                 
                         <input type="submit" name="submit" id="btn-login" class="btn btn-success btn-lg btn-block" value="Register">
