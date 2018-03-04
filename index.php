@@ -33,14 +33,15 @@ session_start();
                     Page Heading
                     <small>Secondary Text</small>
                     <?php 
-                    if(isset($_SESSION['username'])){
-                        echo $_SESSION['username'];
-                    }
-                    if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
-                        echo ' is logged in!';
-                     }else{
-                         echo 'Something went wrong with sessions agains';
-                     }
+                    // if(isset($_SESSION['username'])){
+                    //     echo $_SESSION['username'];
+                    // }
+                    // if(isset($_SESSION['username']) && !empty($_SESSION['username'])) {
+                    //     echo ' is logged in!';
+                    //  }
+                    //  else{
+                    //      echo 'Something went wrong with sessions agains';
+                    //  }
                     ?>
                     
                 </h1>
