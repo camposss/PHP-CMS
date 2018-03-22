@@ -1,5 +1,4 @@
 <?php 
-
 function confirmQuery($result){
     global $conn;
     if(!$result){
@@ -9,7 +8,6 @@ function confirmQuery($result){
 }
 function insert_categories(){
     global $conn;
-
     if(isset($_POST['submit'])){
         $cat_title= $_POST['cat_title'];
 
@@ -27,7 +25,6 @@ function insert_categories(){
         }
     }
 }
-
 function findAllCategories(){
     global $conn;
 
@@ -42,12 +39,9 @@ function findAllCategories(){
         echo "<td>{$cat_title}</td>";
         echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
         echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
-
         echo "<tr>";
         }
-
 }
-
 function deleteCategory(){
     global $conn;
     
@@ -55,10 +49,8 @@ function deleteCategory(){
         $the_cat_id= $_GET['delete'];
         $query= "DELETE FROM categories WHERE cat_id= {$the_cat_id}";
         $delete_query= mysqli_query($conn, $query);
-    
         //this is going to make another request for categories.php
         header("Location: categories.php");
     }
 }
-
 ?>

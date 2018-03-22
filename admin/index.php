@@ -24,13 +24,11 @@
                                         <i class="fa fa-file-text fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                
                 <?php
                     $query= "SELECT * FROM posts";
                     $select_all_posts= mysqli_query($conn, $query);
                     $post_counts= mysqli_num_rows($select_all_posts);
                     echo "<div class='huge'>{$post_counts}</div>"
-
                 ?>
                                         <div>Posts</div>
                                     </div>
@@ -128,25 +126,23 @@
                     </div>
                 </div>
                 <!-- /.row -->
-
 <?php 
-  $query= "SELECT * FROM posts WHERE post_status = 'draft'";
-  $select_all_draft_posts= mysqli_query($conn, $query);
-  $draft_post_counts= mysqli_num_rows($select_all_draft_posts);
+$query= "SELECT * FROM posts WHERE post_status = 'draft'";
+$select_all_draft_posts= mysqli_query($conn, $query);
+$draft_post_counts= mysqli_num_rows($select_all_draft_posts);
 //   echo "<div class='huge'>{$draft_post_counts}</div>";
+$query= "SELECT * FROM posts WHERE post_status = 'publish'";
+$select_all_publish_posts= mysqli_query($conn, $query);
+$publish_post_counts= mysqli_num_rows($select_all_publish_posts);
 
-    $query= "SELECT * FROM posts WHERE post_status = 'publish'";
-    $select_all_publish_posts= mysqli_query($conn, $query);
-    $publish_post_counts= mysqli_num_rows($select_all_publish_posts);
-
-  $query= "SELECT * FROM comments WHERE comment_status = 'reject'";
-  $select_all_rejected_comments= mysqli_query($conn, $query);
-  $rejeceted_comment_counts= mysqli_num_rows($select_all_rejected_comments);
+$query= "SELECT * FROM comments WHERE comment_status = 'reject'";
+$select_all_rejected_comments= mysqli_query($conn, $query);
+$rejeceted_comment_counts= mysqli_num_rows($select_all_rejected_comments);
 //   echo "<div class='huge'>{$draft_post_counts}</div>"
 
-    $query= "SELECT * FROM users WHERE user_role = 'subscriber'";
-    $select_all_user_subscriber= mysqli_query($conn, $query);
-    $subscriber_count= mysqli_num_rows($select_all_user_subscriber);
+$query= "SELECT * FROM users WHERE user_role = 'subscriber'";
+$select_all_user_subscriber= mysqli_query($conn, $query);
+$subscriber_count= mysqli_num_rows($select_all_user_subscriber);
     //   echo "<div class='huge'>{$draft_post_counts}</div>"
 ?>
                 <div class="row">
@@ -159,13 +155,11 @@
                         <?php 
                             $element_text= ['All Posts', 'Published Posts', 'Draft Posts', 'Comments', 'Pending Comments', 'Users', 'Subscribers', 'Categories'];
                             $element_count= [$post_counts, $publish_post_counts, $draft_post_counts, $comment_counts, $rejeceted_comment_counts, $user_counts, $subscriber_count, $categories_counts];
-
                             for($i= 0; $i<count($element_count); $i++){
                                 if(!$element_count){
                                     $element_count=0;
                                 }
                                 echo "['{$element_text[$i]}'" . " , " . "{$element_count[$i]}],";
-
                             }
                         ?>
                         // ['Posts', 1030]
@@ -176,22 +170,14 @@
                             subtitle: 'Sales, Expenses, and Profit: 2014-2017',
                         }
                         };
-
                         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
                         chart.draw(data, google.charts.Bar.convertOptions(options));
                     }
                     </script>
                 </div>
                 <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
-
             <!-- </div> -->
-            
             <!-- /.container-fluid -->
         </div>
-        
-
-
         <!-- /#page-wrapper -->
-
 <?php include "./admin_includes/admin_footer.php" ?>

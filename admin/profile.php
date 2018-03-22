@@ -51,41 +51,27 @@ if(isset($_POST['update_profile'])){
     // $query.= "user_image = '{$user_image}', ";
     $query.= "user_role = '{$user_role}' ";
     $query.= " WHERE username = '{$username}'";
-
     $update_user = mysqli_query($conn, $query);
-
     confirmQuery($update_user);
-
     if(!$update_user){
         die('query failed' .mysqli_error($conn));
     }
 }
-
-
 ?>
     <div id="wrapper">
-
         <? include "./admin_includes/admin_nav.php"; ?>
         <div id="page-wrapper">
-
             <div class="container-fluid">
-
                 <!-- Page Heading -->
                 <div class="row">
                 <h1 class="page-header">
                         Welcome Christian
                             <small>You are the admin</small>
-                            
                         </h1>
-
-
                     </div>
                 <!-- /.row -->
-
             </div>
             <!-- /.container-fluid -->
-
-
 <form action="" method= "post" enctype="multipart/form-data" >
 
 <div class="form-group">
@@ -99,7 +85,6 @@ if(isset($_POST['update_profile'])){
 <div class="form-group">
     <select name="user_role" id="">
         <option value="subscriber"><?php echo $user_role ?></option>
-
     <?php 
         if($user_role=='admin'){
            echo "<option name='user_role' value='subscriber'>subscriber</option>";
@@ -110,13 +95,10 @@ if(isset($_POST['update_profile'])){
             <!-- <option value="subscriber">Select Options</option>     -->
     </select>
 </div>
-
 <!-- <div class="form-group">
     <label for="">Post Image</label>
     <input type="file"name="image">
 </div> -->
-
-
 <div class="form-group">
     <label for="">Username</label>
     <input type="text" class="form-control" name="username" value="<?php echo $username ?>">
@@ -132,12 +114,7 @@ if(isset($_POST['update_profile'])){
 <div class="form-group">
     <input type="submit" class="btn btn-primary" name="update_profile" value="Update Profile" >
 </div>
-
-
 </form>
-        </div>
-
-
+</div>
         <!-- /#page-wrapper -->
-
 <?php include "./admin_includes/admin_footer.php" ?>
