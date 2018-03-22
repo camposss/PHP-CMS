@@ -1,8 +1,7 @@
 <?php  include "includes/db.php"; ?>
- <?php  include "includes/header.php"; ?>
+<?php  include "includes/header.php"; ?>
 
 <?php 
-
 if(isset($_POST['submit'])){
     echo "we hit register or something";
     $username= $_POST['username'];
@@ -34,7 +33,6 @@ if(isset($_POST['submit'])){
             die("Query Failed ". mysqli_error($conn). ''. mysqli_errno($conn));
 
         }
-
         // while($row= mysqli_fetch_array($select_randsalt_query)){
         //     echo $salt= $row['randSalt'];
         // }

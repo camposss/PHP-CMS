@@ -3,17 +3,12 @@ include ('includes/db.php');
 include ('includes/header.php');
 session_start();
 ?>
-
     <!-- Navigation -->
 <?php include ('includes/nav.php'); ?>
-
     <!-- Page Content -->
     <div class="container">
-
         <div class="row">
-
             <!-- Blog Entries Column -->
-
             <div class="col-md-8">
 
                 <?php 
@@ -33,7 +28,6 @@ session_start();
                     $post_content= $row['post_content'];
                     
                     ?>
-                    
                 <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
@@ -56,11 +50,7 @@ session_start();
                        }else{
                            header("Location: index.php");
                        }
-
                 ?>
-
-
-
                 <!-- Blog Comments -->
 <?php 
 if(isset($_POST['create_comment'])){
