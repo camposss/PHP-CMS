@@ -1,8 +1,6 @@
 <?php
 if(isset($_GET['p_id'])){
-
     $the_post_id= $_GET['p_id'];
-
 }
     $query = "SELECT * FROM posts WHERE post_id= $the_post_id";
     $select_posts_by_id= mysqli_query($conn, $query);
@@ -17,9 +15,7 @@ if(isset($_GET['p_id'])){
         $post_tags= $row['post_tags'];
         $post_comments=$row['post_comment_count'];
         $post_date=$row['post_date'];
-        $post_content =$row['post_content'];
-
-        
+        $post_content =$row['post_content'];      
 }
 if(isset($_POST['update_post'])){
 
@@ -79,8 +75,6 @@ if(isset($_POST['update_post'])){
 <div class="form-group">
 
     <select name="post_category" id="">
-    
-
 <?php
 $cat_id= $post_id;
     $query = "SELECT * FROM categories";
@@ -92,8 +86,7 @@ $cat_id= $post_id;
         $cat_title=$row['cat_title'];
         echo "<option value='$cat_id'>{$cat_title}</option>";
         
-        }
-            
+        }          
 ?>
     </select>
 </div>
@@ -111,7 +104,6 @@ $cat_id= $post_id;
             }else{
                 echo "<option value='Publish'>Publish</option>";
             }
-
         ?>
     </select>
 </div>
@@ -131,6 +123,4 @@ $cat_id= $post_id;
 <div class="form-group">
     <input type="submit" class="btn btn-primary" name="update_post" value="Update Post" >
 </div>
-
-
 </form>
